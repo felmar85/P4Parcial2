@@ -20,8 +20,8 @@ function medico(){
                 $("#nuevo-editar").html("");
                 $("#nuevo-editar").removeClass("show");
                 $("#nuevo-editar").addClass("hide");
-                $("#paciente").removeClass("hide");
-                $("#paciente").addClass("show")
+                $("#medico").removeClass("hide");
+                $("#medico").addClass("show")
              } else {
                 swal({
                   type: 'error',
@@ -113,12 +113,12 @@ function medico(){
              dataType:"json"
            }).done(function( resultado ) {   
               //console.log(resultado.data)  
-              //MONTA LOS OPTIONS DEL SELECT DEL paciente         
- /*              $("#id_paciente option").remove()       
-              $("#id_paciente").append("<option selecte value=''>Seleccione un Paciente</option>")
+              //MONTA LOS OPTIONS DEL SELECT DEL medico         
+ /*              $("#id_medico option").remove()       
+              $("#id_medico").append("<option selecte value=''>Seleccione un medico</option>")
               $.each(resultado.data, function (index, value) { //recorre resultado.data
-                $("#id_paciente").append("<option value='" 
-                + value.id_paciente + "'>"
+                $("#id_medico").append("<option value='" 
+                + value.id_medico + "'>"
                 + value.documento + "</option>") 
               });*/
            });
@@ -148,8 +148,8 @@ function medico(){
                 $("#nuevo-editar").html("");
                 $("#nuevo-editar").removeClass("show");
                 $("#nuevo-editar").addClass("hide");
-                $("#paciente").removeClass("hide");
-                $("#paciente").addClass("show")
+                $("#medico").removeClass("hide");
+                $("#medico").addClass("show")
              } else {
                 swal({
                   type: 'error',
@@ -162,26 +162,26 @@ function medico(){
 
 
     $("#contenido").on("click","a.editar",function(){
-       $("#titulo").html("Editar paciente");
+       $("#titulo").html("Editar medico");
        //Recupera datos del fromulario
        var codigo = $(this).data("codigo");
        
-        $("#nuevo-editar").load("./php/pacientes/editarPaciente.php");
+        $("#nuevo-editar").load("./php/medicos/editarMedico.php");
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
-        $("#paciente").removeClass("show");
-        $("#paciente").addClass("hide");
+        $("#medico").removeClass("show");
+        $("#medico").addClass("hide");
        $.ajax({
            type:"get",
-           url:"./php/pacientes/controladorPaciente.php",
+           url:"./php/medicos/controladorMedico.php",
            data: {codigo: codigo, accion:'consultar'},
            dataType:"json"
-           }).done(function( paciente ) {        
-                if(paciente.respuesta === "no existe"){
+           }).done(function( medico ) {        
+                if(medico.respuesta === "no existe"){
                     swal({
                       type: 'error',
                       title: 'Oops...',
-                      text: 'paciente no existe!!!!!'                         
+                      text: 'Medico no existe!!!!!'                         
                     })
                 } else {
                     $("#id").val(medico.codigo);                   
@@ -196,17 +196,17 @@ function medico(){
 
 /*            $.ajax({
              type:"get",
-             url:"./php/pacientes/controladorPaciente.php",
+             url:"./php/medicos/controladorMedico.php",
              data: {accion:'listar'},
              dataType:"json"
            }).done(function( resultado ) {                     
-              $("#id_paciente option").remove();
+              $("#id option").remove();
               $.each(resultado.data, function (index, value) { 
                 
-              if(paciente === value.id_paciente){
-                  $("#id_paciente").append("<option selected value='" + value.id_paciente + "'>" + value.documento + "</option>")
+              if(medico === value.id){
+                  $("#id").append("<option selected value='" + value.id + "'>" + value.documento + "</option>")
                 }else {
-                  $("#id_paciente").append("<option value='" + value.id_paciente + "'>" + value.documento + "</option>")
+                  $("#id").append("<option value='" + value.id + "'>" + value.documento + "</option>")
                 } 
               });
            }); */    

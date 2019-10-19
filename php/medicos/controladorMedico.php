@@ -42,7 +42,7 @@ switch ($_GET['accion']){
 
     case 'consultar':
         $medico = new Medico();
-        $medico->consultar($datos['id']);
+        $medico->consultar($datos['codigo']);
 
         if($medico->getId() == null) {
             $respuesta = array(

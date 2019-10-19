@@ -168,7 +168,7 @@ class Medico extends ModeloAbstractoDB
 		endforeach;
 		//los recibe un areglo
 		$this->query = "
-			UPDATE paciente
+			UPDATE medico
 			SET nombre='$nombre',
 			documento='$documento',
 			especialidad='$especialidad',
